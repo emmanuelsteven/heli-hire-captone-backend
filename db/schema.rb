@@ -20,4 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_153252) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "helicopters", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "contact"
+    t.decimal "price"
+    t.decimal "carriage_capacity"
+    t.integer "model"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
