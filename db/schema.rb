@@ -10,15 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_153252) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_30_103728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "helicopters", force: :cascade do |t|
     t.string "name"
@@ -32,4 +26,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_153252) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "helicopter_id", null: false
+    t.string "city", null: false
+    t.datetime "reserved_date_start", null: false
+    t.datetime "reserved_date_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["helicopter_id"], name: "index_reservations_on_helicopter_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "reservations", "helicopters"
+  add_foreign_key "reservations", "users"
 end
