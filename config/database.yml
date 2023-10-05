@@ -27,7 +27,7 @@ development:
   <<: *default
   database: heli_hire_captone_backend_development
   username: postgres
-  password: ronniebisaso
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -63,7 +63,7 @@ test:
   <<: *default
   database: heli_hire_captone_backend_test
   username: postgres
-  password: ronniebisaso
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
