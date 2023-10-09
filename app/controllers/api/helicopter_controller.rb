@@ -16,6 +16,14 @@ class Api::HelicopterController < ApplicationController
     end
   end
 
+  def destroy
+    @helicopter = Helicopter.find(params[:id])
+    @reservation = Reservation.where(helicopter_id: @helicopter.id)
+    @reservation.destroy_all
+    @helicopter.destroy
+    render json: { message: 'helicopter successfully deleted...' }
+  end
+
   private
   def helicopter_params
     params.require(:helicopter).permit(
