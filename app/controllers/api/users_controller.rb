@@ -1,24 +1,21 @@
 class Api::UsersController < ApplicationController
-  def index
-    @users = User.all
-    render json: @users
-  end
+  def register
+    user = User.find_or_initialize_by(name: params[:name])
 
-  def create
-    respond_to do |format|
-      @user = User.new(user_params)
-
-      if @user.save
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if user.save
+      render json: user, status: :created
+    else
+      render json: { error: user.errors.full_messages.join(', ') }, status: :unprocessable_entity
     end
   end
 
-  private
+  def login
+    user = User.find_by(name: params[:name])
 
-  def user_params
-    params.require(:user).permit(:name)
+    if user
+      render json: user
+    else
+      render json: { error: 'User not found' }, status: :not_found
+    end
   end
 end
