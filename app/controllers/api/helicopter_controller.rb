@@ -25,6 +25,7 @@ class Api::HelicopterController < ApplicationController
   end
 
   private
+
   def helicopter_params
     params.require(:helicopter).permit(
       :name,
@@ -37,4 +38,3 @@ class Api::HelicopterController < ApplicationController
     )
   end
 end
-
