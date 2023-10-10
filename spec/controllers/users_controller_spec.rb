@@ -17,7 +17,7 @@ RSpec.describe Api::UsersController, type: :controller do
 
   describe 'GET #login' do
     it 'returns the user if found' do
-      user = User.create(name: 'ronnie')
+      User.create(name: 'ronnie')
       get :login, params: { name: 'ronnie' }
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)['name']).to eq('ronnie')
