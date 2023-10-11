@@ -1,0 +1,206 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/helicopter":
+    get:
+      summary: Get all Helicopters
+      tags:
+      - Helicopters
+      responses:
+        '200':
+          description: Helicopter found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: text
+                    contact:
+                      type: string
+                    price:
+                      type: decimal
+                    carriage_capacity:
+                      type: decimal
+                    model:
+                      type: integer
+                    image:
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - description
+                  - contact
+                  - price
+                  - carriage_capacity
+                  - model
+                  - image
+  "/api/helicopter/new":
+    post:
+      summary: Creates a helicopter
+      tags:
+      - Helicopters
+      parameters: []
+      responses:
+        '200':
+          description: helicopter created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                contact:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                carriage_capacity:
+                  type: integer
+                image:
+                  type: string
+                model:
+                  type: string
+                description:
+                  type: string
+              required:
+              - name
+              - contact
+              - price
+              - carriage_capacity
+              - model
+  "/api/helicopters/{id}":
+    delete:
+      summary: Deletes a helicopter
+      tags:
+      - Helicopters
+      parameters:
+      - name: id
+        in: path
+        description: ID of the helicopter to delete
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: helicopter deleted
+        '404':
+          description: helicopter not found
+  "/api/reservations":
+    get:
+      summary: Retrieves a list of reservations
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: reservations found
+    post:
+      summary: Creates a reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '201':
+          description: reservation created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                helicopter_id:
+                  type: integer
+                city:
+                  type: string
+                reserved_date_start:
+                  type: string
+                  format: date
+                reserved_date_end:
+                  type: string
+                  format: date
+              required:
+              - user_id
+              - helicopter_id
+              - city
+              - reserved_date_start
+              - reserved_date_end
+  "/api/reservations/{id}":
+    delete:
+      summary: Deletes a reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        description: ID of the reservation to delete
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: reservation deleted
+        '404':
+          description: reservation not found
+  "/api/users/register":
+    post:
+      summary: Registers a new user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user registered
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/users/login":
+    post:
+      summary: Logs in an existing user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in
+        '404':
+          description: user not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+servers:
+- url: http://127.0.0.1:3000
+  variables:
+    defaultHost:
+      default: ''
