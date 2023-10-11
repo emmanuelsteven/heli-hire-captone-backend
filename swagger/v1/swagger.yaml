@@ -43,64 +43,146 @@ paths:
                   - carriage_capacity
                   - model
                   - image
-  "/api/helicopter/new":
     post:
-      summary: Creates a helicopter
+      summary: Create a helicopter
       tags:
       - Helicopters
       parameters: []
       responses:
         '200':
-          description: helicopter created
-        '422':
-          description: invalid request
+          description: Error creating helicopter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: text
+                  contact:
+                    type: string
+                  price:
+                    type: decimal
+                  carriage_capacity:
+                    type: decimal
+                  model:
+                    type: integer
+                  image:
+                    type: string
+                  error:
+                    type: string
+                required:
+                - error
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
+                id:
+                  type: integer
                 name:
                   type: string
+                description:
+                  type: text
                 contact:
                   type: string
                 price:
-                  type: number
-                  format: float
+                  type: decimal
                 carriage_capacity:
+                  type: decimal
+                model:
                   type: integer
                 image:
                   type: string
-                model:
-                  type: string
-                description:
-                  type: string
               required:
+              - id
               - name
+              - description
               - contact
               - price
               - carriage_capacity
               - model
-  "/api/helicopters/{id}":
-    delete:
-      summary: Deletes a helicopter
+              - image
+  "/api/helicopter/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Retrieve a Helicopter
       tags:
       - Helicopters
-      parameters:
-      - name: id
-        in: path
-        description: ID of the helicopter to delete
-        required: true
-        schema:
-          type: integer
       responses:
         '200':
-          description: helicopter deleted
+          description: Helicopter found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: text
+                  contact:
+                    type: string
+                  price:
+                    type: decimal
+                  carriage_capacity:
+                    type: decimal
+                  model:
+                    type: integer
+                  image:
+                    type: string
+                required:
+                - id
+                - name
+                - description
+                - contact
+                - price
+                - carriage_capacity
+                - model
+                - image
         '404':
-          description: helicopter not found
+          description: Helicopter not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+    delete:
+      summary: Delete a helicopter
+      tags:
+      - Helicopters
+      responses:
+        '204':
+          description: Helicopter deleted
+        '404':
+          description: Helicopter not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
   "/api/reservations":
     get:
-      summary: Retrieves a list of reservations
+      summary: Retrieves all reservations
       tags:
       - Reservations
       responses:
@@ -128,67 +210,22 @@ paths:
                   type: integer
                 city:
                   type: string
-                reserved_date_start:
-                  type: string
-                  format: date
-                reserved_date_end:
-                  type: string
-                  format: date
+                date:
+                  type: datetime
               required:
               - user_id
               - helicopter_id
               - city
-              - reserved_date_start
-              - reserved_date_end
-  "/api/reservations/{id}":
-    delete:
-      summary: Deletes a reservation
-      tags:
-      - Reservations
-      parameters:
-      - name: id
-        in: path
-        description: ID of the reservation to delete
-        required: true
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: reservation deleted
-        '404':
-          description: reservation not found
-  "/api/users/register":
+              - date
+  "/api/users":
     post:
-      summary: Registers a new user
-      tags:
-      - Users
+      summary: new_session user
       parameters: []
       responses:
         '201':
-          description: user registered
+          description: user created
         '422':
           description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-              required:
-              - name
-  "/api/users/login":
-    post:
-      summary: Logs in an existing user
-      tags:
-      - Users
-      parameters: []
-      responses:
-        '200':
-          description: user logged in
-        '404':
-          description: user not found
       requestBody:
         content:
           application/json:

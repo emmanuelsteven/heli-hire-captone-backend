@@ -4,6 +4,10 @@ class ReservationsController < ApplicationController
     render json: @reservations
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+  end
+
   def create
     @reservation = Reservation.create(reservation_params)
     if @reservation.valid?

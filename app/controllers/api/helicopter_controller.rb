@@ -4,6 +4,11 @@ class Api::HelicopterController < ApplicationController
     render json: @helicopters
   end
 
+  def show
+    @helicopter = Helicopter.find(params[:id])
+    render json: @helicopter
+  end
+
   def create
     @helicopter = Helicopter.new(helicopter_params)
 
@@ -11,7 +16,7 @@ class Api::HelicopterController < ApplicationController
       render json: @helicopter, status: 200
     else
       render json: {
-        error: 'Error creating location...'
+        error: 'Error creating service...'
       }
     end
   end
@@ -22,6 +27,7 @@ class Api::HelicopterController < ApplicationController
     @reservation.destroy_all
     @helicopter.destroy
     render json: { message: 'helicopter successfully deleted...' }
+    head :no_content
   end
 
   private
@@ -37,4 +43,6 @@ class Api::HelicopterController < ApplicationController
       :description
     )
   end
+
+
 end

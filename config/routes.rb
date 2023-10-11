@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     post 'login', to: 'users#login'
     
     resources :users, only: [] do
-      resources :reservations, only: [:index, :create, :destroy]
+      resources :reservations, only: [:index, :create, :destroy, :show]
     end
-    resources :reservations, only: [:destroy]
-    resources :helicopter, only: [:index, :create, :destroy]
+    resources :reservations, only: [:destroy, :show]
+    resources :helicopter, only: [:index, :create, :destroy, :show]
   end
 end
