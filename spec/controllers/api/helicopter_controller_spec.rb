@@ -30,9 +30,9 @@ RSpec.describe Api::HelicopterController, type: :controller do
     end
 
     it 'creates a new helicopter' do
-      expect {
+      expect do
         post :create, params: valid_params
-      }.to change(Helicopter, :count).by(1)
+      end.to change(Helicopter, :count).by(1)
     end
 
     it 'returns a success response' do
@@ -49,6 +49,5 @@ RSpec.describe Api::HelicopterController, type: :controller do
       post :create, params: valid_params
       expect(response.body).to include('Sample Helicopter')
     end
-
   end
 end

@@ -43,6 +43,4 @@ class Api::HelicopterController < ApplicationController
       :description
     )
   end
-
-
 end
