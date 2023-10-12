@@ -50,3 +50,4 @@ end
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'dotenv', '~> 2.8'
+gem 'rswag'
