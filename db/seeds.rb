@@ -1,4 +1,3 @@
-
 heli_data = [
     { name: 'Airbus Helicopter', description: 'meduim utility medical Helicopter', contact: 'www.H160@airbus.ng', price: 3000, carriage_capacity: '9', model: 'H160', image: 'https://st2.depositphotos.com/3562409/9102/i/450/depositphotos_91028268-stock-photo-helicopter-isolated-on-white-background.jpg' },
 
@@ -23,3 +22,4 @@ heli_data.each do |heli_data|
 end
 
 puts "Helicopter created successfully"
+
