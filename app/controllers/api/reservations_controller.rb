@@ -8,7 +8,8 @@ class Api::ReservationsController < ApplicationController
   end
 
   def create
-    existing_reservation = Reservation.find_by(helicopter_id: reservation_params[:helicopter_id], date: reservation_params[:date])
+    existing_reservation = Reservation.find_by(helicopter_id: reservation_params[:helicopter_id],
+                                               date: reservation_params[:date])
 
     if existing_reservation
       render json: { error: 'Reservation for this helicopter and date already exists' }, status: :unprocessable_entity
