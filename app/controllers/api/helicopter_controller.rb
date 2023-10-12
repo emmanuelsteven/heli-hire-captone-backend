@@ -4,19 +4,43 @@ class Api::HelicopterController < ApplicationController
     render json: @helicopters
   end
 
+  def show
+    @helicopter = Helicopter.find(params[:id])
+    render json: @helicopter
+  end
+
   def create
-    @helicopters = Helicopter.new(helicopter_params)
+    @helicopter = Helicopter.new(helicopter_params)
 
     if @helicopter.save
       render json: @helicopter, status: 200
     else
       render json: {
-        error: 'Error creating location...'
+        error: 'Error creating service...'
       }
     end
   end
 
-  def location_params
-    params.require(:location).permit(:name, :description, :contact, :price, :carriage_capacity, :model)
+  def destroy
+    @helicopter = Helicopter.find(params[:id])
+    @reservation = Reservation.where(helicopter_id: @helicopter.id)
+    @reservation.destroy_all
+    @helicopter.destroy
+    render json: { message: 'helicopter successfully deleted...' }
+    head :no_content
+  end
+
+  private
+
+  def helicopter_params
+    params.require(:helicopter).permit(
+      :name,
+      :contact,
+      :price,
+      :carriage_capacity,
+      :image,
+      :model,
+      :description
+    )
   end
 end
