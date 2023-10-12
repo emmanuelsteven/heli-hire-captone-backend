@@ -1,4 +1,5 @@
 class Helicopter < ApplicationRecord
-  belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :description, :contact, :price, :carriage_capacity, :model, :image, presence: true
 end

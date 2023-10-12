@@ -7,16 +7,12 @@ default: &default
 
 development:
   <<: *default
-  database: heli_hire_1_development
-  user: postgres
-  password: ismail
-
+  database: heli_hire_captone_backend_development
+  username: postgres
 test:
   <<: *default
-  database: heli_hire_1_test
-  user: postgres
-  password: ismail
-
+  database: heli_hire_captone_backend_test
+  username: postgres
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
