@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  user: postgres
+
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: heli_hire_captone_backend_development
+  username: postgres
+test:
+  <<: *default
+  database: heli_hire_captone_backend_test
+  username: postgres
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
