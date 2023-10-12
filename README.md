@@ -72,6 +72,11 @@ In order to run this project you need:
 
 - Here is the link of the [Front-End](https://github.com/emmanuelsteven/heli-hire-captsone-frontend)
 
+## ScreenShot of the Kanban Board
+
+![Screenshot 2023-10-12 174440](https://github.com/emmanuelsteven/heli-hire-captone-backend/assets/96125730/1c9a0833-700b-40f0-bce1-4c4024fc8805)
+
+
 ### Setup
 
 - Clone this repository to your desired folder:
