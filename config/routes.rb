@@ -8,6 +8,6 @@ Rails.application.routes.draw do
       resources :reservations, only: [:index, :create, :destroy]
     end
     resources :reservations, only: [:destroy]
-    resources :helicopter, only: [:index, :create]
+    resources :helicopter, only: [:index, :create, :destroy]
   end
 end
