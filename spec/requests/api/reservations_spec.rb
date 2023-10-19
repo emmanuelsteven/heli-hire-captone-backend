@@ -1,8 +1,9 @@
 require 'rails_helper'
 require 'swagger_helper'
 
+
 describe 'Reservations API' do
-  path '/api/reservations' do
+  path '/api/users/1/reservations' do
     get 'Retrieves all reservations' do
       tags 'Reservations'
       produces 'application/json'
