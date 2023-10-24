@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  user: postgres
+  # user: postgres
 
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
@@ -15,4 +15,5 @@ test:
   username: postgres
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  # url: <%= ENV['DATABASE_URL'] %>
+  url: https://heli-hire-capstone-backend.onrender.com
