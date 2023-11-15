@@ -15,5 +15,5 @@ test:
   username: postgres
 production:
   <<: *default
-  # url: <%= ENV['DATABASE_URL'] %>
-  url: https://heli-hire-capstone-backend.onrender.com
+  url: <%= ENV['DATABASE_URL'] %>
+  # url: https://heli-hire-capstone-backend.onrender.com
